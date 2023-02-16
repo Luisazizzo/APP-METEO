@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  color: rgb(255, 255, 255);
+}
+h1 {
+  font-size: 70px;
+}
+h2,
+h5 {
+  font-weight: 400;
+}
+h5 {
+  font-size: 18px;
+}
+h3,
+h4 {
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.video video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -5;
+}
+.title {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 40px;
+}
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+label {
+  font-size: 20px;
+}
+.enter {
+  text-align: center;
+}
+.search {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff;
+}
+.btn {
+  padding: 10px 10px;
+  border: none;
+  background-color: #2077b5;
+  border-radius: 5px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.35s;
+}
+.btn:hover {
+  background-color: #fff;
+  color: #2077b5;
+  box-shadow: 4px 4px 4px #000;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+.card {
+  width: 340px;
+  background-color: #a1d4fe32;
+  border-radius: 8px;
+  box-shadow: 4px 4px 4px rgba(49, 48, 48, 0.737);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 40px 20px;
+  border: 2px solid #052a5b8e;
+}
+img {
+  width: 100px;
+}
+.wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+.icons img {
+  width: 30px;
+  filter: invert();
+  margin-bottom: 10px;
+}
+.icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.description {
+  font-size: 15px;
+}
+.ciao {
+  font-size: 10px;
+  font-weight: bold;
+}
+/* .nuvoloso {
+  background-image: url(nuvoloso.jpeg);
+  background-position: center;
+  background-size: cover;
+}
+.pioggia {
+  background-image: url(pioggia.jpeg);
+  background-position: center;
+  background-size: cover;
+}
+.sole {
+  background-image: url(sole.jpeg);
+  background-position: center;
+  background-size: cover;
+} */
