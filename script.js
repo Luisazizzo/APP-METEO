@@ -1,7 +1,9 @@
 import { GET } from "./api.js";
 
 const searchEl = document.querySelector("#search");
+const searchElInput = document.querySelector(".search");
 const containerCardEl = document.querySelector(".container");
+const searchTendina = document.querySelector(".tendina-ricerca");
 
 const weekDay = (data) => {
   const day = new Date(data);
@@ -89,17 +91,17 @@ const createCard = (item) => {
   const wrapperEl = document.createElement("div");
   wrapperEl.className = "wrapper";
   wrapperEl.innerHTML = `<div class="icons">
-  <img src="./vento.png" alt="vento"/>
+  <img src="./img/vento.png" alt="vento"/>
   <p class="description">${item.current.wind_kph} km/h</p>
   <p class="ciao">Wind</p>
   </div>
   <div class="icons">
-  <img src="./umidita.png" alt="umidità"/>
+  <img src="./img/umidita.png" alt="umidità"/>
   <p class="description">${item.current.humidity} %</p>
   <p class="ciao">Humidity</p>
   </div>
   <div class="icons">
-  <img src="./pressione.png" alt="pressione"/>
+  <img src="./img/pressione.png" alt="pressione"/>
   <p class="description">${item.current.pressure_in} atm</p>
   <p class="ciao">Pressure</p>
   </div>`;
@@ -116,14 +118,63 @@ const createCard = (item) => {
   return cardEl;
 };
 
+let ricerca;
+
+if (localStorage.getItem("cittaCercate")) {
+  ricerca = JSON.parse(localStorage.getItem("cittaCercate"));
+} else {
+  ricerca = [];
+}
+
+const cittaCercate = () => {
+  localStorage.setItem("cittaCercate", JSON.stringify(ricerca));
+  searchTendina.innerHTML = "";
+  ricerca.forEach((item, index) => {
+    const divCitta = document.createElement("div");
+    divCitta.className = "div-citta";
+    const pCitta = document.createElement("p");
+    pCitta.className = "citta";
+    pCitta.textContent = item;
+    const remove = document.createElement("p");
+    remove.textContent = "x";
+    remove.className = "remove";
+
+    divCitta.append(pCitta, remove);
+    searchTendina.appendChild(divCitta);
+
+    pCitta.addEventListener("click", () => {
+      GET(pCitta.textContent).then((data) => {
+        containerCardEl.appendChild(createCard(data));
+      });
+    });
+
+    remove.addEventListener("click", () => {
+      ricerca.splice(index, 1);
+      cittaCercate();
+    });
+  });
+};
+cittaCercate();
+// searchElInput.addEventListener("focus", () => {
+//   searchTendina.style.display = "flex";
+// });
+
+// searchElInput.addEventListener("blur", () => {
+//   searchTendina.style.display = "none";
+// });
+
 searchEl.addEventListener("submit", (e) => {
   e.preventDefault();
   GET(e.target[0].value).then((data) => {
-    searchEl.reset();
     if (data.error) {
       alert("Città non trovata");
     } else {
+      if (!ricerca.includes(e.target[0].value)) {
+        ricerca.push(e.target[0].value);
+        cittaCercate();
+      }
       containerCardEl.appendChild(createCard(data));
     }
+    searchEl.reset();
   });
 });

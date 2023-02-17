@@ -16,7 +16,9 @@
   </head>
   <body>
     <div class="video">
-      <video src="./video.mp4" loop autoplay></video>
+      <video loop autoplay>
+        <source src="./video.mp4" type="video/mp4" />
+      </video>
     </div>
     <h1 class="title">WEATHER DAY</h1>
     <section class="input">
@@ -25,7 +27,9 @@
         <input type="search" class="search" placeholder="ex: Rome" required />
         <input type="submit" value="Search" class="btn" />
       </form>
+      <div class="tendina-ricerca"></div>
     </section>
+
     <section class="container"></section>
   </body>
 </html>
